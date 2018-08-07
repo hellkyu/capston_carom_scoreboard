@@ -1,4 +1,5 @@
 #include "server.h"
+#include "scoretype.h"
 
 #include <QDebug>
 #include <QTcpSocket>
@@ -30,17 +31,19 @@ void Server::onConnect()
 
 void Server::onMessageComing()
 {
-	/*
-	const int MaxLength = 1024;
-	char buffer[MaxLength + 1];
+	QString request = socket->readAll();
+	if (request.contains(QString::number(static_cast<qint32>(ScoreType::good)))) {
+		emit good();
+	}
+	else if (request.contains(QString::number(static_cast<qint32>(ScoreType::miss)))) {
+		emit miss();
+	}
+	else if (request.contains(QString::number(static_cast<qint32>(ScoreType::fail)))) {
+		emit fail();
+	}
 
-	qint64 byteCount = socket->read(buffer, MaxLength);
-	buffer[byteCount] = 0;
-	*/
-
-	qDebug() << socket->readAll();
-
-	const char* response = "working working!";
+	const char* response = "I got it!";
+	
 
 	qDebug() << socket->write(response);
 }
