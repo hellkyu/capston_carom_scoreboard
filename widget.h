@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QLabel>
 
 class QTimer;
 
@@ -26,17 +27,16 @@ private:
 	bool isYellowTurn = true;
 	QTimer *timer;
 
-	// ball images
-	QPixmap yellow_on;
-	QPixmap yellow_off;
-	QPixmap white_on;
-	QPixmap white_off;
+	// ball labels
+	QLabel* yellow_off_label = new QLabel();
+	QLabel* yellow_on_label = new QLabel();
+	QLabel* white_off_label = new QLabel();
+	QLabel* white_on_label = new QLabel();
 
 private slots:
     void showTime();
     void playing();
 	void good();
-	void miss();
 	void fail();
 };
 

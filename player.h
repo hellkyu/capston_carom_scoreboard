@@ -19,7 +19,6 @@ public:
     Player(BallColor myball);
     void incrementScore();
     void decrementScore();
-    qint32 getScore();
 };
 
 #endif // PLAYER_H

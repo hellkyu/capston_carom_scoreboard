@@ -35,9 +35,6 @@ void Server::onMessageComing()
 	if (request.contains(QString::number(static_cast<qint32>(ScoreType::good)))) {
 		emit good();
 	}
-	else if (request.contains(QString::number(static_cast<qint32>(ScoreType::miss)))) {
-		emit miss();
-	}
 	else if (request.contains(QString::number(static_cast<qint32>(ScoreType::fail)))) {
 		emit fail();
 	}
