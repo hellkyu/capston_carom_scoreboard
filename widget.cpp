@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 #include "server.h"
 
+#include <QLabel>
 #include <QTimer>
 
 Widget::Widget(QWidget *parent) :
@@ -10,6 +11,27 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     timer = new QTimer(this);
+
+	setStyleSheet("background-color: #262626");
+	
+	QPalette p;
+	// lcdTimer settings
+	p.setColor(QPalette::WindowText, QColor(0xea3808));
+	ui->lcdTimer->setPalette(p);
+	ui->lcdTimer->setStyleSheet("border: 2px solid white; border-radius: 10px;");
+
+	// pushbutton settings
+	ui->startBtn->setStyleSheet("border: 2px solid white; border-radius: 10px; color: #ea3808;");
+
+	// ball images init
+	QImage* yellow_off_img = new QImage();
+	yellow_off_img->load("images/yellow_off.png");
+
+	QLabel* yellow_off_label = new QLabel();
+	yellow_off_label->setPixmap(QPixmap::fromImage(*yellow_off_img));
+
+	ui->gridLayout->addWidget(yellow_off_label, 1, 2);
+	//yellow_off_label->show();
 
     connect(timer, &QTimer::timeout, this, &Widget::showTime);
     connect(ui->startBtn, SIGNAL(clicked(bool)), this, SLOT(playing()));

@@ -15,7 +15,6 @@ class Widget : public QWidget
 
 public:
     
-
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
@@ -26,6 +25,12 @@ private:
 	bool isPlaying = false;
 	bool isYellowTurn = true;
 	QTimer *timer;
+
+	// ball images
+	QPixmap yellow_on;
+	QPixmap yellow_off;
+	QPixmap white_on;
+	QPixmap white_off;
 
 private slots:
     void showTime();
