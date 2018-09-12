@@ -32,7 +32,8 @@ SOURCES += \
 HEADERS += \
         widget.h \
     player.h \
-    server.h
+    server.h \
+    scoretype.h
 
 FORMS += \
         widget.ui

@@ -9,7 +9,6 @@ class Server : public QObject
 
 signals:
 	void good();
-	void miss();
 	void fail();
 
 private slots:

@@ -82,26 +82,29 @@ void Widget::playing()
 
 void Widget::good()
 {
-	tempScore++;
+	if (isPlaying) {
+		if (isYellowTurn) {
+			qint32 temp = ui->lcdYellowScore->value();
+			ui->lcdYellowScore->display(temp + 1);
+		}
+		else {
+			qint32 temp = ui->lcdWhiteScore->value();
+			ui->lcdWhiteScore->display(temp + 1);
+		}
+	}
 }
 
 void Widget::fail()
 {
-	if (isYellowTurn) {
-		qint32 temp = ui->lcdYellowScore->value();
-		ui->lcdYellowScore->display(temp + tempScore);
-
-		yellow_on_label->setVisible(false);
-		white_on_label->setVisible(true);
+	if (isPlaying) {
+		if (isYellowTurn) {
+			yellow_on_label->setVisible(false);
+			white_on_label->setVisible(true);
+		}
+		else {
+			yellow_on_label->setVisible(true);
+			white_on_label->setVisible(false);
+		}
+		isYellowTurn = !isYellowTurn;
 	}
-	else {
-		qint32 temp = ui->lcdWhiteScore->value();
-		ui->lcdWhiteScore->display(temp + tempScore);
-
-		yellow_on_label->setVisible(true);
-		white_on_label->setVisible(false);
-	}
-	isYellowTurn = !isYellowTurn;
-	tempScore = 0;
-
 }
