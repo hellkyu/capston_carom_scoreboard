@@ -12,12 +12,27 @@ Widget::Widget(QWidget *parent) :
     timer = new QTimer(this);
 
 	setStyleSheet("background-color: #262626");
+	//setStyleSheet("background-color: #2626AD");
 	
 	QPalette p;
+	// label color
+	p.setColor(QPalette::WindowText, QColor(0xA4A9B3));
+	ui->label->setPalette(p);
+	ui->label_2->setPalette(p);
+
 	// lcdTimer settings
 	p.setColor(QPalette::WindowText, QColor(0xea3808));
 	ui->lcdTimer->setPalette(p);
 	ui->lcdTimer->setStyleSheet("border: 2px solid white; border-radius: 10px;");
+
+	// lcdScore color
+	p.setColor(QPalette::WindowText, QColor(0xffcc05));
+	ui->lcdYellowScore->setPalette(p);
+	ui->lcdYellowScore->setStyleSheet("border: 2px solid white; border-radius: 10px;");
+
+	p.setColor(QPalette::WindowText, QColor(0xffffff));
+	ui->lcdWhiteScore->setPalette(p);
+	ui->lcdWhiteScore->setStyleSheet("border: 2px solid white; border-radius: 10px;");
 
 	// pushbutton settings
 	ui->startBtn->setStyleSheet("border: 2px solid white; border-radius: 10px; color: #ea3808;");
@@ -34,10 +49,10 @@ Widget::Widget(QWidget *parent) :
 	ball_img.load("images/white_on.png");
 	white_on_label->setPixmap(QPixmap::fromImage(ball_img));
 
-	ui->gridLayout->addWidget(yellow_off_label, 1, 2);
-	ui->gridLayout->addWidget(yellow_on_label, 1, 2);
-	ui->gridLayout->addWidget(white_off_label, 2, 2);
-	ui->gridLayout->addWidget(white_on_label, 2, 2);
+	ui->gridLayout->addWidget(yellow_off_label, 2, 0, Qt::AlignCenter);
+	ui->gridLayout->addWidget(yellow_on_label, 2, 0, Qt::AlignCenter);
+	ui->gridLayout->addWidget(white_off_label, 2, 4, Qt::AlignCenter);
+	ui->gridLayout->addWidget(white_on_label, 2, 4, Qt::AlignCenter);
 
 	yellow_on_label->setVisible(false);
 	white_on_label->setVisible(false);
@@ -96,6 +111,7 @@ void Widget::good()
 
 void Widget::fail()
 {
+
 	if (isPlaying) {
 		if (isYellowTurn) {
 			yellow_on_label->setVisible(false);
